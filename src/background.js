@@ -31,7 +31,7 @@ chrome.runtime.onMessage.addListener(function (msg) {
   }
 });
 
-chrome.tabs.onActivated.addListener(function (activeInfo) {
+chrome.tabs.onActivated.addListener(function () {
   chrome.tabs.query(
     { active: true, currentWindow: true },
     function (array_of_tabs) {
@@ -63,29 +63,4 @@ chrome.tabs.onActivated.addListener(function (activeInfo) {
       }
     }
   );
-  //   const url = new URL(tabs[0].url);
-  //   const tablink = url.hostname.replace("www.", "");
-
-  //   const siteSafe = safeSites.find((el) => el === tablink);
-  //   const scamSite = scamSites.find((el) => el === tablink);
-
-  //   if (siteSafe) {
-  //     chrome.browserAction.setIcon({
-  //       path: {
-  //         19: "icons/success.png",
-  //       },
-  //     });
-  //   } else if (scamSite) {
-  //     chrome.browserAction.setIcon({
-  //       path: {
-  //         19: "icons/error.png",
-  //       },
-  //     });
-  //   } else {
-  //     chrome.browserAction.setIcon({
-  //       path: {
-  //         19: "icons/unknown.png",
-  //       },
-  //     });
-  //   }
 });

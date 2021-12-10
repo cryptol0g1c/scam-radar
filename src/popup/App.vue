@@ -11,6 +11,20 @@
         <img :src="`icons/${siteStatus}.png`" alt="" />
       </div>
       <p>Domain: {{ tablink }}</p>
+      <div v-if="siteStatus === 'unknown'" class="buttons-container">
+        <a
+          href="https://github.com/cryptol0g1c/scam-radar/edit/main/src/data/safeSites.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><button class="button pr-button">Sitio Seguro</button></a
+        >
+        <a
+          href="https://github.com/cryptol0g1c/scam-radar/edit/main/src/data/scamSites.json"
+          target="_blank"
+          rel="noopener noreferrer"
+          ><button class="button scam-button">Reportar Scam</button></a
+        >
+      </div>
     </div>
   </div>
 </template>
@@ -49,11 +63,6 @@ export default {
       .catch();
 
     chrome.tabs.onActivated.addListener(this.updateTabInfo);
-  },
-  computed: {
-    defaultText() {
-      return browser.i18n.getMessage("extName");
-    },
   },
   methods: {
     updateTabInfo(tabs) {
@@ -130,5 +139,27 @@ h1 {
 }
 .title-container img {
   padding-left: 0.5rem;
+}
+
+.buttons-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.button {
+  margin: 0.5rem 0 0 0;
+  border: none;
+  color: white;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.pr-button {
+  background: green;
+}
+.scam-button {
+  background: red;
 }
 </style>
